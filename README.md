@@ -1,2 +1,3 @@
-# aoc_2022
- My solutions to Advent of Code 2022
+# Advent of Code 2022 🎄☃️
+
+ Happy holidays to everyone 🎅🎅🎅
