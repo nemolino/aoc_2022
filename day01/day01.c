@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <assert.h>
 
@@ -10,6 +11,9 @@ int get_index_of_min(int* a);
 
 int main()
 {
+    clock_t t;
+    int result;
+
     FILE* fp = fopen("input_01_test.txt", "r");
     if (fp == NULL) exit(1);
 
@@ -21,11 +25,19 @@ int main()
     fp = fopen("input_01.txt", "r");
     if (fp == NULL) exit(1);
 
-    printf("part1: %d\n", part1(fp));
-    rewind(fp);
-    printf("part2: %d\n", part2(fp));
-    fclose (fp);
+    t = clock();
+    result = part1(fp);
+    t = clock() - t;
+    printf("part1: %d , %f ms\n", result, ((double)t * 1000.0)/CLOCKS_PER_SEC);
 
+    rewind(fp);
+
+    t = clock();
+    result = part2(fp);
+    t = clock() - t;
+    printf("part2: %d , %f ms\n", result, ((double)t * 1000.0)/CLOCKS_PER_SEC);
+
+    fclose (fp);
     return 0;
 }
 
@@ -37,7 +49,7 @@ int part1(FILE *fp)
 
     while(fgets(line, sizeof(line), fp) != NULL)
     {
-        if (line[0] == '\n')
+        if (strlen(line) == 1)
         {
             if (cur_total > max_total) max_total = cur_total;
             cur_total = 0;
@@ -58,7 +70,7 @@ int part2(FILE *fp)
 
     while(fgets(line, sizeof(line), fp) != NULL)
     {
-        if (line[0] == '\n')
+        if (strlen(line) == 1)
         {
             update_max_totals(max_totals, cur_total);
             cur_total = 0;
@@ -80,8 +92,5 @@ void update_max_totals(int* max_totals, int cur_total)
 
 int get_index_of_min(int* a)
 {
-    if (a[0] <= a[1])
-        return (a[0] <= a[2]) ? 0 : 2;
-    else
-        return (a[1] <= a[2]) ? 1 : 2;
+    return (a[0] <= a[1]) ? ((a[0] <= a[2]) ? 0 : 2) : ((a[1] <= a[2]) ? 1 : 2);
 }
