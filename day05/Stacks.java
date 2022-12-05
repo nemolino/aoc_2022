@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class Stacks {
     
-    public final int numberOfStacks;
+    private final int numberOfStacks;
     private LinkedList<Character>[] stacks = null;
 
     public Stacks(int numberOfStacks){
@@ -10,6 +10,10 @@ public class Stacks {
         this.stacks = new LinkedList[this.numberOfStacks];
         for (int i = 0; i < this.numberOfStacks; i++)
             this.stacks[i] = new LinkedList<Character>();
+    }
+
+    public int numberOfStacks(){
+        return this.numberOfStacks;
     }
 
     public void addOnBottom(int i, char c){

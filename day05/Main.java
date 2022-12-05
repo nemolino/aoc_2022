@@ -35,7 +35,7 @@ public class Main {
         Stacks s = new Stacks(numberOfStacks);
 
         while (curLine != null) {
-            for (int i = 0; i < s.numberOfStacks; i++) {
+            for (int i = 0; i < s.numberOfStacks(); i++) {
                 char c = curLine.charAt(4 * i + 1);
                 if (c != ' ') s.addOnBottom(i, c);
             }
