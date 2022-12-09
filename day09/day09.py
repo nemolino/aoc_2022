@@ -30,10 +30,13 @@ def solve (filename, part):
     )
 
     with open(filename) as f:
+
         for line in f:
+
             # line parsing
             dir, number_of_moves = line.strip().split() 
             number_of_moves = int(number_of_moves)
+
             # moves simulation
             for _ in range(number_of_moves):
 
@@ -48,13 +51,17 @@ def solve (filename, part):
                 # tail update
                 for i in range(tail_length - 1):
 
-                    if adjacent(rope[i], rope[i+1]): break
+                    if adjacent(rope[i], rope[i+1]): 
+                        break
 
                     for offsets, move in offsets_updates_pairs:
                         
                         if check_offsets(rope[i], rope[i+1], offsets):
                             rope[i+1] = update_point(rope[i+1], move)
                             break
+
+                    else: 
+                        raise AssertionError()
 
                 visited_by_tail.add(rope[-1])
 
