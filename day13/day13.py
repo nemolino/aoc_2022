@@ -46,7 +46,7 @@ def part2 (filename):
 if __name__ == "__main__":
 
     assert part1("input_13_test.txt") == 13
-    assert part2("input_13_test.txt")== 140
+    assert part2("input_13_test.txt") == 140
     
     t = time.process_time()
     result = part1("input_13.txt")
